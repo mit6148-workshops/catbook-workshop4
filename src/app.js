@@ -2,7 +2,6 @@
 const http = require('http');
 const bodyParser = require('body-parser');
 const express = require('express');
-const session = require('express-session');
 
 
 // local dependencies
@@ -19,16 +18,8 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// set up sessions
-app.use(session({
-  secret: 'session-secret',
-  resave: 'false',
-  saveUninitialized: 'true'
-}));
-
 // hook up passport
 app.use(passport.initialize());
-app.use(passport.session());
 
 // authentication routes
 app.get('/auth/facebook', passport.authenticate('facebook'));
