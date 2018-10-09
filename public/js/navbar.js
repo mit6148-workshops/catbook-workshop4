@@ -12,6 +12,5 @@ function renderNavbar(user) {
 
   navbarDiv.appendChild(newNavbarItem('Home', '/'));
   navbarDiv.appendChild(newNavbarItem('Profile', '/u/profile?'+user._id));
-  navbarDiv.appendChild(newNavbarItem('Login', '/auth/facebook'));
-  
+  navbarDiv.appendChild(newNavbarItem('Login', '/auth/google'));
 }
