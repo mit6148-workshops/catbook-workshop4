@@ -49,6 +49,13 @@ app.use('/', views);
 app.use('/api', api );
 app.use('/static', express.static('public'));
 
+// logout route
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
+});
+
+
 // 404 route
 app.use(function(req, res, next) {
   const err = new Error('Not Found');
