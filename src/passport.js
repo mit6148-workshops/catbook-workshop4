@@ -8,19 +8,19 @@ passport.use(new GoogleStrategy({
   clientID: 'FILL THIS OUT LATER!',
   clientSecret: 'FILL THIS OUT LATER!',
   callbackURL: '/auth/google/callback'
-}, function(accessToken, refreshToken, profile, done) {
+}, function (accessToken, refreshToken, profile, done) {
   User.findOne({
     'googleid': profile.id
-  }, function(err, user) {
+  }, function (err, user) {
     if (err) return done(err);
 
     if (!user) {
-      const user = new User({
+      user = new User({
         name: profile.displayName,
         googleid: profile.id
       });
 
-      user.save(function(err) {
+      user.save(function (err) {
         if (err) console.log(err);
 
         return done(err, user);
@@ -31,10 +31,10 @@ passport.use(new GoogleStrategy({
   });
 }));
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
   done(null, user);
 });
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser(function (obj, done) {
   done(null, obj);
 });
 
