@@ -2,6 +2,7 @@
 const http = require('http');
 const bodyParser = require('body-parser');
 const express = require('express');
+const session = require('express-session');
 
 
 // local dependencies
@@ -17,6 +18,13 @@ const app = express();
 // set POST request body parser
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+// set up sessions
+app.use(session({
+  secret: 'session-secret',
+  resave: 'false',
+  saveUninitialized: 'true'
+}));
 
 // hook up passport
 app.use(passport.initialize());
